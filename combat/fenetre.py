@@ -82,16 +82,39 @@ class MenuPrincipal(Tk):
         self.ResetInterface()
         self.toile3= Canvas(self, width=1500, height=700, bg="red")
         self.toile3.pack()
-        self.x =0
-        self.y =0
+        self.x =50
+        self.y =10
         self.vitesseX =0
         self.vitesseY =0
-        self.image()
+        self.imageperso()
         
-    def image(self):
-        self.persofeu = Image.open("play.png")
+    def imageperso(self):
+        self.persofeu = Image.open("flamedefence.png")
         self.perso1 = ImageTk.PhotoImage(self.persofeu)
-        self.imageperso1 =self.toile3.create_image(0, 0,anchor="nw", image=self.perso1)
+        self.imageperso1 =self.toile3.create_image(self.x, self.y, anchor="s", image=self.perso1)
+        self.graviter()
+        self.bind("<d>", self.droite)
+        self.bind("<q>", self.gauche)
+    def graviter(self):
+        if self.toile3.coords(self.imageperso1)[1]>700:
+            self.vitesseY= (-0.1)
+        else:
+             self.vitesseY= 0.1
+        self.after(1,self.mouvement)
+    def mouvement(self):
+        self.toile3.move(self.imageperso1,self.vitesseX,self.vitesseY)
+        self.after(1,self.graviter)
+    def droite(self,evt):
+        self.vitesseX= 0.3
+        self.after (2000,self.droitestop)
+    def droitestop(self):
+        self.vitesseX= 0
+
+    def gauche(self,evt):
+        self.vitesseX= -0.3
+        self.after (2000,self.gauchestop)
+    def gauchestop(self):
+        self.vitesseX= 0
 
     def ResetInterface(self):
         
