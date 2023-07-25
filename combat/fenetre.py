@@ -82,6 +82,7 @@ class MenuPrincipal(Tk):
         self.ResetInterface()
         self.toile3= Canvas(self, width=1500, height=700, bg="red")
         self.toile3.pack()
+        self.couldownbouledefeu = 0
         self.x =50
         self.y =10
         self.vitesseX =0
@@ -140,11 +141,31 @@ class MenuPrincipal(Tk):
         self.verification_saut= 0
         self.vitesseY= 0
     
+
+
     def boul_de_feu(self,evt):
-        self.x= self.toile3.coords(self.imageperso1)[0]+70
-        self.y= self.toile3.coords(self.imageperso1)[1]-70
-        self.imagebouldefeu= self.toile3.create_image(self.x, self.y, anchor="w", image=self.perso110)
-        self.toile3.move(self.imagebouldefeu,0.2,0)
+        if self.couldownbouledefeu ==0:
+            self.couldownbouledefeu= 1
+            self.x= self.toile3.coords(self.imageperso1)[0]+70
+            self.y= self.toile3.coords(self.imageperso1)[1]-70
+            self.vitessebouledefeu= 0.2
+            self.imagebouldefeu= self.toile3.create_image(self.x, self.y, anchor="w", image=self.perso110)
+            self.deplacementbouledefeu()
+            self.after(2000, self.boul_de_feu_stop)
+
+
+    def boul_de_feu_stop(self):
+        self.couldownbouledefeu=0
+        self.vitessebouledefeu=0
+        self.toile3.delete(self.imagebouldefeu)
+    def deplacementbouledefeu(self):
+        if self.k!= 0:
+            self.toile3.move(self.imagebouldefeu,self.vitessebouledefeu,0)
+            self.after(1, self.deplacementbouledefeu)
+
+
+
+
     def animation_droit(self):
         self.x= self.toile3.coords(self.imageperso1)[0]
         self.y= self.toile3.coords(self.imageperso1)[1]
