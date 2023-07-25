@@ -86,36 +86,78 @@ class MenuPrincipal(Tk):
         self.y =10
         self.vitesseX =0
         self.vitesseY =0
+        self.verification_saut =0
         self.imageperso()
         
     def imageperso(self):
         self.persofeu = Image.open("flamedefence.png")
         self.perso1 = ImageTk.PhotoImage(self.persofeu)
+        self.persofeu1 = Image.open("droit.png")
+        self.perso11 = ImageTk.PhotoImage(self.persofeu1)
+        self.persofeu10 = Image.open("boulfeu.jfif")
+        self.perso110 = ImageTk.PhotoImage(self.persofeu10)
         self.imageperso1 =self.toile3.create_image(self.x, self.y, anchor="s", image=self.perso1)
         self.graviter()
         self.bind("<d>", self.droite)
         self.bind("<q>", self.gauche)
+        self.bind("<z>", self.saut)
+        self.bind("<g>",self.boul_de_feu)
     def graviter(self):
-        if self.toile3.coords(self.imageperso1)[1]>700:
-            self.vitesseY= (-0.1)
-        else:
-             self.vitesseY= 0.1
+        if self.verification_saut==0:
+            if self.toile3.coords(self.imageperso1)[1]>700:
+                if self.verification_saut==0:
+                    self.vitesseY= (-0.1)
+            else:
+                if self.verification_saut==0:
+                    self.vitesseY= 0.1
         self.after(1,self.mouvement)
     def mouvement(self):
-        self.toile3.move(self.imageperso1,self.vitesseX,self.vitesseY)
-        self.after(1,self.graviter)
+        if self.verification_saut==0:
+            self.toile3.move(self.imageperso1,self.vitesseX,self.vitesseY)
+            self.after(1,self.graviter)
+        else:
+            self.toile3.move(self.imageperso1,self.vitesseX,self.vitesseY)
+            self.after(1,self.mouvement)
     def droite(self,evt):
         self.vitesseX= 0.3
+        self.animation_droit()
         self.after (2000,self.droitestop)
     def droitestop(self):
         self.vitesseX= 0
 
     def gauche(self,evt):
         self.vitesseX= -0.3
+        self.animation_gauche()
         self.after (2000,self.gauchestop)
     def gauchestop(self):
         self.vitesseX= 0
 
+    def saut(self,evt):
+        self.verification_saut= 1
+        self.vitesseY= -0.3
+        self.after (200,self.sautstop)
+    def sautstop(self):
+        self.verification_saut= 0
+        self.vitesseY= 0
+    
+    def boul_de_feu(self,evt):
+        self.x= self.toile3.coords(self.imageperso1)[0]+70
+        self.y= self.toile3.coords(self.imageperso1)[1]-70
+        self.imagebouldefeu= self.toile3.create_image(self.x, self.y, anchor="w", image=self.perso110)
+        self.toile3.move(self.imagebouldefeu,0.2,0)
+    def animation_droit(self):
+        self.x= self.toile3.coords(self.imageperso1)[0]
+        self.y= self.toile3.coords(self.imageperso1)[1]
+        self.toile3.delete(self.imageperso1)
+        self.imageperso1 =self.toile3.create_image(self.x, self.y, anchor="s", image=self.perso11)
+    
+    def animation_gauche(self):
+        self.x= self.toile3.coords(self.imageperso1)[0]
+        self.y= self.toile3.coords(self.imageperso1)[1]
+        self.toile3.delete(self.imageperso1)
+        self.imageperso1 =self.toile3.create_image(self.x, self.y, anchor="s", image=self.perso1)
+    
+    
     def ResetInterface(self):
         
         for item in self.winfo_children():
