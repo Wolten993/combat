@@ -1,0 +1,10 @@
+name: Zelda attaque: 20 recharge_attaque1: 20 recharge_attaque2: 5 dega_attaque_special: 30 vie: 100 defence_special: -50%_attaque
+name: Homme_flamme attaque: 20 recharge_attaque1: 20 recharge_attaque2: 3 dega_attaque_special: 20 vie: 100 defence_special: -50%_attaque
+name: Sacamoto attaque: 20 recharge_attaque1: 20 recharge_attaque2: 3 dega_attaque_special: 30 vie: 200 defence_special: -50%_attaque
+name: Homme_glasse attaque: 10 recharge_attaque1: 20 recharge_attaque2: 3 dega_attaque_special:20 vie: 200 defence_special: -50%_attaque
+name: Ninja attaque: 20 recharge_attaque1: 20 recharge_attaque2: 2 dega_attaque_special: +50% vitesse vie: 100 defence_special: -50%_attaque
+name: Homme_eau attaque: 20 recharge_attaque1: 20 recharge_attaque2: 3 dega_attaque_special:30 vie: 100 defence_special: -50%_attaque
+name: Samourail attaque: 10 recharge_attaque1: 20 recharge_attaque2: 5 dega_attaque_special: 20 vie: 200 defence_special: -50%_attaque
+name: Homme_terre attaque: 10 recharge_attaque1: 20 recharge_attaque2: 3 dega_attaque_special: 20 vie: 200 defence_special: -50%_attaque
+name: Naruto attaque: 20 recharge_attaque1: 20 recharge_attaque2: 4 dega_attaque_special: 30 vie: 100 defence_special: -50%_attaque
+name: Homme_teleport attaque: 20 recharge_attaque1: 20 recharge_attaque2: 5 dega_attaque_special: telepotation vie: 100 defence_special: -50%_attaque
