@@ -17,6 +17,7 @@ class MenuPrincipal(Tk):
         self.title("la fureur des combattant")
         self.resizable(width=False, height=False)
         self.configure(bg="black")
+        self.stastitique()
         self.mainmenu()
     def mainmenu(self):
         self.ResetInterface()
@@ -44,6 +45,21 @@ class MenuPrincipal(Tk):
                 self.choisdupersonnage()
     def choisdupersonnage(self):
         self.ResetInterface()
+        
+        self.imagemenu20 = Image.open('eau.png')
+        self.image_eau = ImageTk.PhotoImage(self.imagemenu20)
+        self.imagemenu200 = Image.open('flamme.png')
+        self.image_flamme = ImageTk.PhotoImage(self.imagemenu200)
+        self.imagemenu20000 = Image.open('ninjat.png')
+        self.image_ninjat = ImageTk.PhotoImage(self.imagemenu20000)
+        self.imagemenu2100 = Image.open('sacamoto.png')
+        self.image_sacamoto = ImageTk.PhotoImage(self.imagemenu2100)
+        self.imagemenu24300 = Image.open('samourail.png')
+        self.image_samourail = ImageTk.PhotoImage(self.imagemenu24300)
+        self.imagemenu243000 = Image.open('terre.png')
+        self.image_terre = ImageTk.PhotoImage(self.imagemenu243000)
+        self.imagemenu240300 = Image.open('vegetal.png')
+        self.image_vegetal = ImageTk.PhotoImage(self.imagemenu240300)
         self.imagemenu2 = Image.open('menu2.png')
         self.python_image10 = ImageTk.PhotoImage(self.imagemenu2)
         self.toile2= Canvas(self, width=1500, height=700)
@@ -62,7 +78,8 @@ class MenuPrincipal(Tk):
         self.play2 = Image.open("play.png")
         self.imageplays2 = ImageTk.PhotoImage(self.play2)
         self.toile2.create_image(700, 590,anchor="nw", image=self.imageplays2)
-        self.toile2.bind("<Button-1>",self.détection2) 
+        self.toile2.bind("<Button-1>",self.détection2)         
+        self.image_flamme=self.toile2.create_image(400, 200,anchor="center", image=self.image_flamme)
         self.MenuPersonnage1.pack()
        # self.ResetInterface()
 
@@ -75,7 +92,12 @@ class MenuPrincipal(Tk):
                 
                 self.déplacement()
     
-
+    def stastitique(self):
+        fichier =open("statistique.txt","r")
+        self.list_stastitique =[]
+        for i in range (10):
+            self.list_stastitique.append(fichier.readline().split())
+        print(self.list_stastitique)
 
     def déplacement(self):
         print("rrrrrrrrrrrrrrrrrrrrrr")
@@ -88,6 +110,7 @@ class MenuPrincipal(Tk):
         self.vitesseX =0
         self.vitesseY =0
         self.verification_saut =0
+        self.cote =0
         self.imageperso()
         
     def imageperso(self):
@@ -121,6 +144,7 @@ class MenuPrincipal(Tk):
             self.after(1,self.mouvement)
     def droite(self,evt):
         self.vitesseX= 0.3
+        self.cote= 1
         self.animation_droit()
         self.after (2000,self.droitestop)
     def droitestop(self):
@@ -128,6 +152,7 @@ class MenuPrincipal(Tk):
 
     def gauche(self,evt):
         self.vitesseX= -0.3
+        self.cote= 0
         self.animation_gauche()
         self.after (2000,self.gauchestop)
     def gauchestop(self):
@@ -146,9 +171,15 @@ class MenuPrincipal(Tk):
     def boul_de_feu(self,evt):
         if self.couldownbouledefeu ==0:
             self.couldownbouledefeu= 1
-            self.x= self.toile3.coords(self.imageperso1)[0]+70
+            if self.cote ==1:
+                self.x= self.toile3.coords(self.imageperso1)[0]+70
+            else:
+                self.x= self.toile3.coords(self.imageperso1)[0]-70
             self.y= self.toile3.coords(self.imageperso1)[1]-70
-            self.vitessebouledefeu= 0.2
+            if self.cote ==1:
+                self.vitessebouledefeu= 0.2
+            else:
+                self.vitessebouledefeu= -0.2
             self.imagebouldefeu= self.toile3.create_image(self.x, self.y, anchor="w", image=self.perso110)
             self.deplacementbouledefeu()
             self.after(2000, self.boul_de_feu_stop)
@@ -159,7 +190,7 @@ class MenuPrincipal(Tk):
         self.vitessebouledefeu=0
         self.toile3.delete(self.imagebouldefeu)
     def deplacementbouledefeu(self):
-        if self.k!= 0:
+        if self.vitessebouledefeu!= 0:
             self.toile3.move(self.imagebouldefeu,self.vitessebouledefeu,0)
             self.after(1, self.deplacementbouledefeu)
 
