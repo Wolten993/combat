@@ -79,11 +79,50 @@ class MenuPrincipal(Tk):
         self.imageplays2 = ImageTk.PhotoImage(self.play2)
         self.toile2.create_image(700, 590,anchor="nw", image=self.imageplays2)
         self.toile2.bind("<Button-1>",self.détection2)         
-        self.image_flamme=self.toile2.create_image(400, 200,anchor="center", image=self.image_flamme)
+        self.image_flamme1=self.toile2.create_image(400, 300,anchor="center", image=self.image_flamme)
+        
+        self.image_flamme10=self.toile2.create_image(400, 400,anchor="center", image=self.image_sacamoto)
+        self.image_flamme100=self.toile2.create_image(400, 600,anchor="center", image=self.image_ninjat)
+        self.image_flamme1000=self.toile2.create_image(500, 200,anchor="center", image=self.image_eau)
+        self.image_flamme1000000=self.toile2.create_image(500, 300,anchor="center", image=self.image_samourail)
+        self.image_flamme11650=self.toile2.create_image(500, 400,anchor="center", image=self.image_terre)
+        
         self.MenuPersonnage1.pack()
        # self.ResetInterface()
 
     def détection2(self,evt):
+        
+        if evt.x>380 and evt.x<420:
+            if evt.y>280 and evt.y<320:
+                self.choix_perso1= 1
+                print(self.list_stastitique[self.choix_perso1])
+
+        if evt.x>380 and evt.x<420:
+            if evt.y>380 and evt.y<420:
+                self.choix_perso1= 2
+                print(self.list_stastitique[self.choix_perso1])
+
+        if evt.x>380 and evt.x<420:
+            if evt.y>580 and evt.y<620:
+                self.choix_perso1= 4
+                print(self.list_stastitique[self.choix_perso1])
+
+        if evt.x>480 and evt.x<520:
+            if evt.y>180 and evt.y<220:
+                self.choix_perso1= 5
+                print(self.list_stastitique[self.choix_perso1])
+
+        if evt.x>480 and evt.x<520:
+            if evt.y>280 and evt.y<320:
+                self.choix_perso1= 6
+                print(self.list_stastitique[self.choix_perso1])
+        
+        if evt.x>480 and evt.x<520:
+            if evt.y>380 and evt.y<420:
+                self.choix_perso1= 7
+                print(self.list_stastitique[self.choix_perso1])
+        
+
         if evt.x>100 and evt.x<209:
             if evt.y>192 and evt.y<298:
                 self.mainmenu()
