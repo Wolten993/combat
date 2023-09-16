@@ -58,8 +58,16 @@ class MenuPrincipal(Tk):
         self.image_samourail = ImageTk.PhotoImage(self.imagemenu24300)
         self.imagemenu243000 = Image.open('terre.png')
         self.image_terre = ImageTk.PhotoImage(self.imagemenu243000)
-        self.imagemenu240300 = Image.open('vegetal.png')
-        self.image_vegetal = ImageTk.PhotoImage(self.imagemenu240300)
+        self.imagemenu240300 = Image.open('Zelda.png')
+        self.image_Zelda = ImageTk.PhotoImage(self.imagemenu240300)
+        self.imagemenu24031000 = Image.open('glass.png')
+        self.image_glass = ImageTk.PhotoImage(self.imagemenu24031000)
+        self.imagemenu204031000 = Image.open('téléporte.png')
+        self.image_téléporte = ImageTk.PhotoImage(self.imagemenu204031000)
+        self.imagemenu2004031000 = Image.open('naruto.png')
+        self.image_naruto = ImageTk.PhotoImage(self.imagemenu2004031000)
+        
+
         self.imagemenu2 = Image.open('menu2.png')
         self.python_image10 = ImageTk.PhotoImage(self.imagemenu2)
         self.toile2= Canvas(self, width=1500, height=700)
@@ -87,11 +95,22 @@ class MenuPrincipal(Tk):
         self.image_flamme1000000=self.toile2.create_image(500, 300,anchor="center", image=self.image_samourail)
         self.image_flamme11650=self.toile2.create_image(500, 400,anchor="center", image=self.image_terre)
         
+        
+        self.image_flamme11650=self.toile2.create_image(400, 200,anchor="center", image=self.image_Zelda)
+        self.image_flamme11650=self.toile2.create_image(400, 500,anchor="center", image=self.image_glass)
+        self.image_flamme11650=self.toile2.create_image(500, 500,anchor="center", image=self.image_naruto)
+        self.image_flamme11650=self.toile2.create_image(500, 600,anchor="center", image=self.image_téléporte)
+        
+
         self.MenuPersonnage1.pack()
        # self.ResetInterface()
 
     def détection2(self,evt):
-        
+        if evt.x>380 and evt.x<420:
+            if evt.y>180 and evt.y<220:
+                self.choix_perso1= 0
+                print(self.list_stastitique[self.choix_perso1])
+
         if evt.x>380 and evt.x<420:
             if evt.y>280 and evt.y<320:
                 self.choix_perso1= 1
@@ -100,6 +119,11 @@ class MenuPrincipal(Tk):
         if evt.x>380 and evt.x<420:
             if evt.y>380 and evt.y<420:
                 self.choix_perso1= 2
+                print(self.list_stastitique[self.choix_perso1])
+
+        if evt.x>380 and evt.x<420:
+            if evt.y>480 and evt.y<520:
+                self.choix_perso1= 3
                 print(self.list_stastitique[self.choix_perso1])
 
         if evt.x>380 and evt.x<420:
@@ -122,7 +146,16 @@ class MenuPrincipal(Tk):
                 self.choix_perso1= 7
                 print(self.list_stastitique[self.choix_perso1])
         
-
+        if evt.x>480 and evt.x<520:
+            if evt.y>480 and evt.y<520:
+                self.choix_perso1= 8
+                print(self.list_stastitique[self.choix_perso1])
+        
+        if evt.x>480 and evt.x<520:
+            if evt.y>580 and evt.y<620:
+                self.choix_perso1= 9
+                print(self.list_stastitique[self.choix_perso1])
+        
         if evt.x>100 and evt.x<209:
             if evt.y>192 and evt.y<298:
                 self.mainmenu()
@@ -150,6 +183,12 @@ class MenuPrincipal(Tk):
         self.vitesseY =0
         self.verification_saut =0
         self.cote =0
+       
+        self.nomperso =StringVar()
+        self.nomperso.set(self.list_stastitique[self.choix_perso1][1])
+        self.point_de_vie=self.toile3.create_rectangle(20,30,220,50, fill="green")
+        self.nom_du_perso=Label(self.toile3,textvariable=self.nomperso)
+        self.nom_du_perso.place(x=20,y=10)
         self.imageperso()
         
     def imageperso(self):
