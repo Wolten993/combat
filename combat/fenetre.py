@@ -172,13 +172,7 @@ class MenuPrincipal(Tk):
                 self.choix_perso1= 9
                 print(self.list_stastitique[self.choix_perso1])
         
-        if evt.x>100 and evt.x<209:
-            if evt.y>192 and evt.y<298:
-                self.mainmenu()
-        if evt.x>703 and evt.x<797:
-            if evt.y>591 and evt.y<638:
-                
-                self.déplacement()
+        
     
     
         if evt.x>880 and evt.x<920:
@@ -232,8 +226,15 @@ class MenuPrincipal(Tk):
                 print(self.list_stastitique[self.choix_perso2])
         
         
+        if evt.x>100 and evt.x<209:
+            if evt.y>192 and evt.y<298:
+                self.mainmenu()
+        if evt.x>703 and evt.x<797:
+            if evt.y>591 and evt.y<638:
                 
-                self.déplacement()
+            
+                
+             self.déplacement()
     
     
     
@@ -261,14 +262,25 @@ class MenuPrincipal(Tk):
         self.y =10
         self.vitesseX =0
         self.vitesseY =0
+        self.x2 =1250
+        self.y2 =10
+        self.vitesseX2 =0
+        self.vitesseY2 =0
         self.verification_saut =0
+        self.verification_saut2 =0
         self.cote =0
        
         self.nomperso =StringVar()
         self.nomperso.set(self.list_stastitique[self.choix_perso1][1])
         self.point_de_vie=self.toile3.create_rectangle(20,30,220,50, fill="green")
+        self.point_de_vie2=self.toile3.create_rectangle(1250,30,1450,50, fill="green")
         self.nom_du_perso=Label(self.toile3,textvariable=self.nomperso)
         self.nom_du_perso.place(x=20,y=10)
+        
+        self.nomperso2 =StringVar()
+        self.nomperso2.set(self.list_stastitique[self.choix_perso2][1])
+        self.nom_du_perso2=Label(self.toile3,textvariable=self.nomperso2)
+        self.nom_du_perso2.place(x=1250,y=10)
         self.imageperso()
         
     def imageperso(self):
@@ -278,11 +290,23 @@ class MenuPrincipal(Tk):
         self.perso11 = ImageTk.PhotoImage(self.persofeu1)
         self.persofeu10 = Image.open("boulfeu.jfif")
         self.perso110 = ImageTk.PhotoImage(self.persofeu10)
-        self.imageperso1 =self.toile3.create_image(self.x, self.y, anchor="s", image=self.perso1)
+        self.deplacementperso1()   
+        self.deplacementperso2()
+    
+    def deplacementperso1(self):
+        self.imageperso1 =self.toile3.create_image(self.x, self.y, anchor="s", image=self.perso1)  
         self.graviter()
         self.bind("<d>", self.droite)
         self.bind("<q>", self.gauche)
         self.bind("<z>", self.saut)
+        self.bind("<g>",self.boul_de_feu)
+    
+    def deplacementperso2(self):
+        self.imageperso2 =self.toile3.create_image(self.x2, self.y2, anchor="s", image=self.perso1)  
+        self.graviter2()
+        self.bind("<Right>", self.droite2)
+        self.bind("<Left>", self.gauche2)
+        self.bind("<Up>", self.saut2)
         self.bind("<g>",self.boul_de_feu)
     def graviter(self):
         if self.verification_saut==0:
@@ -300,6 +324,28 @@ class MenuPrincipal(Tk):
         else:
             self.toile3.move(self.imageperso1,self.vitesseX,self.vitesseY)
             self.after(1,self.mouvement)
+    
+    
+    def graviter2(self):
+        if self.verification_saut2==0:
+            if self.toile3.coords(self.imageperso2)[1]>700:
+                if self.verification_saut2==0:
+                    self.vitesseY2= (-0.1)
+            else:
+                if self.verification_saut2==0:
+                    self.vitesseY2= 0.1
+        self.after(1,self.mouvement2)
+    def mouvement2(self):
+        if self.verification_saut2==0:
+            self.toile3.move(self.imageperso2,self.vitesseX2,self.vitesseY2)
+            self.after(1,self.graviter2)
+        else:
+            self.toile3.move(self.imageperso2,self.vitesseX2,self.vitesseY2)
+            self.after(1,self.mouvement2)
+    
+    
+    
+    
     def droite(self,evt):
         self.vitesseX= 0.3
         self.cote= 1
@@ -316,6 +362,22 @@ class MenuPrincipal(Tk):
     def gauchestop(self):
         self.vitesseX= 0
 
+    def droite2(self,evt):
+        self.vitesseX2= 0.3
+        self.cote= 1
+        
+        self.after (2000,self.droitestop2)
+    def droitestop2(self):
+        self.vitesseX2= 0
+
+    def gauche2(self,evt):
+        self.vitesseX2= -0.3
+        self.cote= 0
+        
+        self.after (2000,self.gauchestop2)
+    def gauchestop2(self):
+        self.vitesseX2= 0
+    
     def saut(self,evt):
         self.verification_saut= 1
         self.vitesseY= -0.3
@@ -324,6 +386,13 @@ class MenuPrincipal(Tk):
         self.verification_saut= 0
         self.vitesseY= 0
     
+    def saut2(self,evt):
+        self.verification_saut2= 1
+        self.vitesseY2= -0.3
+        self.after (200,self.sautstop2)
+    def sautstop2(self):
+        self.verification_saut2= 0
+        self.vitesseY2= 0
 
 
     def boul_de_feu(self,evt):
