@@ -102,6 +102,22 @@ class MenuPrincipal(Tk):
         self.image_flamme11650=self.toile2.create_image(500, 600,anchor="center", image=self.image_téléporte)
         
 
+
+        self.image_flamme1=self.toile2.create_image(900, 300,anchor="center", image=self.image_flamme)
+        
+        self.image_flamme100090=self.toile2.create_image(900, 400,anchor="center", image=self.image_sacamoto)
+        self.image_flamme100=self.toile2.create_image(900, 600,anchor="center", image=self.image_ninjat)
+        self.image_flamme1000=self.toile2.create_image(1000, 200,anchor="center", image=self.image_eau)
+        self.image_flamme1000000=self.toile2.create_image(1000, 300,anchor="center", image=self.image_samourail)
+        self.image_flamme11650=self.toile2.create_image(1000, 400,anchor="center", image=self.image_terre)
+        
+        
+        self.image_flamme1160950=self.toile2.create_image(900, 200,anchor="center", image=self.image_Zelda)
+        self.image_flamme1160850=self.toile2.create_image(900, 500,anchor="center", image=self.image_glass)
+        self.image_flamme116587540=self.toile2.create_image(1000, 500,anchor="center", image=self.image_naruto)
+        self.image_flamme117865650=self.toile2.create_image(1000, 600,anchor="center", image=self.image_téléporte)
+
+
         self.MenuPersonnage1.pack()
        # self.ResetInterface()
 
@@ -163,6 +179,70 @@ class MenuPrincipal(Tk):
             if evt.y>591 and evt.y<638:
                 
                 self.déplacement()
+    
+    
+        if evt.x>880 and evt.x<920:
+            if evt.y>180 and evt.y<220:
+                self.choix_perso2= 0
+                print(self.list_stastitique[self.choix_perso2])
+
+        if evt.x>880 and evt.x<920:
+            if evt.y>280 and evt.y<320:
+                self.choix_perso2= 1
+                print(self.list_stastitique[self.choix_perso2])
+
+        if evt.x>880 and evt.x<920:
+            if evt.y>380 and evt.y<420:
+                self.choix_perso2= 2
+                print(self.list_stastitique[self.choix_perso2])
+
+        if evt.x>880 and evt.x<920:
+            if evt.y>480 and evt.y<520:
+                self.choix_perso2= 3
+                print(self.list_stastitique[self.choix_perso2])
+
+        if evt.x>880 and evt.x<920:
+            if evt.y>580 and evt.y<620:
+                self.choix_perso2= 4
+                print(self.list_stastitique[self.choix_perso2])
+
+        if evt.x>980 and evt.x<1020:
+            if evt.y>180 and evt.y<220:
+                self.choix_perso2= 5
+                print(self.list_stastitique[self.choix_perso2])
+
+        if evt.x>980 and evt.x<1020:
+            if evt.y>280 and evt.y<320:
+                self.choix_perso2= 6
+                print(self.list_stastitique[self.choix_perso2])
+        
+        if evt.x>980 and evt.x<1020:
+            if evt.y>380 and evt.y<420:
+                self.choix_perso2= 7
+                print(self.list_stastitique[self.choix_perso2])
+        
+        if evt.x>980 and evt.x<1020:
+            if evt.y>480 and evt.y<520:
+                self.choix_perso2= 8
+                print(self.list_stastitique[self.choix_perso2])
+        
+        if evt.x>980 and evt.x<1020:
+            if evt.y>580 and evt.y<620:
+                self.choix_perso2= 9
+                print(self.list_stastitique[self.choix_perso2])
+        
+        
+                
+                self.déplacement()
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     def stastitique(self):
         fichier =open("statistique.txt","r")
