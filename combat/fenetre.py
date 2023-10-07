@@ -292,7 +292,10 @@ class MenuPrincipal(Tk):
         self.perso110 = ImageTk.PhotoImage(self.persofeu10)
         self.deplacementperso1()   
         self.deplacementperso2()
-    
+        self.hitbox()
+        self.hitbox2()
+
+
     def deplacementperso1(self):
         self.imageperso1 =self.toile3.create_image(self.x, self.y, anchor="s", image=self.perso1)  
         self.graviter()
@@ -393,6 +396,38 @@ class MenuPrincipal(Tk):
     def sautstop2(self):
         self.verification_saut2= 0
         self.vitesseY2= 0
+
+    def hitbox (self):
+        self.HBx1= self.toile3.coords(self.imageperso1)[0]+40
+        self.HBx2= self.toile3.coords(self.imageperso1)[0]-40
+        self.HBy1= self.toile3.coords(self.imageperso1)[1]-180
+        self.HBy2= self.toile3.coords(self.imageperso1)[1]+5
+        
+        self.deplacementhitbox()
+
+    def deplacementhitbox(self):
+        self.HBx1= self.toile3.coords(self.imageperso1)[0]+40
+        self.HBx2= self.toile3.coords(self.imageperso1)[0]-40
+        self.HBy1= self.toile3.coords(self.imageperso1)[1]-180
+        self.HBy2= self.toile3.coords(self.imageperso1)[1]+5
+        
+        self.after(1,self.deplacementhitbox )
+
+    def hitbox2 (self):
+        self.HBx12= self.toile3.coords(self.imageperso2)[0]+40
+        self.HBx22= self.toile3.coords(self.imageperso2)[0]-40
+        self.HBy12= self.toile3.coords(self.imageperso2)[1]-180
+        self.HBy22= self.toile3.coords(self.imageperso2)[1]+5
+        
+        self.deplacementhitbox2()
+
+    def deplacementhitbox2(self):
+        self.HBx12= self.toile3.coords(self.imageperso2)[0]+40
+        self.HBx22= self.toile3.coords(self.imageperso2)[0]-40
+        self.HBy12= self.toile3.coords(self.imageperso2)[1]-180
+        self.HBy22= self.toile3.coords(self.imageperso2)[1]+5
+        
+        self.after(1,self.deplacementhitbox2)
 
 
     def boul_de_feu(self,evt):
